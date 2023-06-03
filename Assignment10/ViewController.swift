@@ -8,12 +8,21 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    @IBOutlet weak var button: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
 
+    @IBAction func chooseColor(_ sender: Any) {
+        let view = storyboard?.instantiateViewController(withIdentifier: "ColorsVc") as? ColorsVc
+        if let view {
+            view.setBackgroundColor = { self.view.backgroundColor = $0 }
+            view.setButtonColor = { self.button.backgroundColor = $0}
+            navigationController?.pushViewController(view, animated: true)
+        }
 
+    }
+    
 }
 
